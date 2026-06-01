@@ -1,0 +1,72 @@
+[package]
+name = "nazros-core"
+version = "0.1.0"
+edition = "2021"
+authors = ["nazrOS Team"]
+description = "nazrOS CORE — ядро платформы СТРАННО"
+license = "UNLICENSED"
+rust-version = "1.78"
+
+[lib]
+name = "nazros_core"
+crate-type = ["cdylib", "rlib"]  # dylib для Tauri + rlib для тестов
+
+[dependencies]
+# Сериализация
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+bincode = "2"           # бинарная сериализация для .нзр
+
+# UUID
+uuid = { version = "1", features = ["v4", "serde"] }
+
+# Время
+chrono = { version = "0.4", features = ["serde"] }
+
+# Математика (3D)
+glam = { version = "0.28", features = ["serde"] }   # Vec3, Quat, Mat4
+
+# Параллелизм
+rayon = "1"             # параллельная обработка
+crossbeam = "0.8"       # lock-free структуры данных
+
+# Логирование
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Сжатие (для .нзр)
+zstd = "0.13"
+
+# Хэши и контрольные суммы
+crc32fast = "1"
+blake3 = "1"            # хэш ассетов
+
+# Ошибки
+thiserror = "1"
+anyhow = "1"
+
+# Асинхронность (для network-модулей)
+tokio = { version = "1", features = ["full"], optional = true }
+
+[dev-dependencies]
+criterion = "0.5"       # бенчмарки
+proptest = "1"          # property-based тесты
+tempfile = "3"
+
+[features]
+default = []
+async = ["tokio"]
+gpu = []                # включается когда доступен GPU-бэкенд
+
+[[bench]]
+name = "scene_graph"
+harness = false
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+
+[profile.dev]
+opt-level = 1           # чуть быстрее чем 0, для итераций
