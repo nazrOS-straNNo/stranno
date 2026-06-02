@@ -1,8 +1,8 @@
 //! Узел графа сцены nazrOS
 
-use uuid::Uuid;
-use super::transform::Transform3D;
 use super::component::Component;
+use super::transform::Transform3D;
+use uuid::Uuid;
 
 /// Узел сцены — базовая единица графа.
 ///

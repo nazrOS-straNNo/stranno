@@ -2,8 +2,8 @@
 //!
 //! Полная реализация с dylib загрузкой — Фаза 2.
 
-use std::collections::HashMap;
 use crate::events::IdМодуля;
+use std::collections::HashMap;
 
 /// Манифест модуля — метаданные при регистрации
 #[derive(Debug, Clone)]
@@ -21,10 +21,14 @@ pub struct PluginRegistry {
 }
 
 impl PluginRegistry {
-    pub fn новый() -> Self { Self::default() }
+    pub fn новый() -> Self {
+        Self::default()
+    }
 
     /// Зарегистрировать модуль
-    pub fn зарегистрировать(&mut self, манифест: МанифестМодуля) {
+    pub fn зарегистрировать(
+        &mut self, манифест: МанифестМодуля
+    ) {
         let ключ = манифест.id.to_string();
         self.модули.insert(ключ, манифест);
     }

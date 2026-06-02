@@ -3,24 +3,24 @@
 //! Центральная шина и граф сцены, через которую взаимодействуют
 //! все модули: РУКИ, МУЛЬТ, ТОЧКИ, СТУДИЯ, ПОЛЕ, ШИНА, ГЛЮК...
 
-#![forbid(unsafe_code)]           // безопасность по умолчанию
+#![forbid(unsafe_code)] // безопасность по умолчанию
 #![warn(missing_docs)]
 #![warn(clippy::all)]
-#![allow(non_ascii_idents)]       // разрешить кириллические идентификаторы
+#![allow(non_ascii_idents)] // разрешить кириллические идентификаторы
 
-pub mod scene;
+pub mod error;
 pub mod events;
+pub mod formats;
 pub mod history;
 pub mod memory;
 pub mod plugins;
-pub mod formats;
-pub mod error;
+pub mod scene;
 
 // Публичный пре-импорт для удобства
-pub use scene::{SceneGraph, Node, Transform3D, Component};
-pub use events::{EventBus, Event, EventKind};
-pub use history::{ИсторияДействий, Команда};
 pub use error::CoreError;
+pub use events::{Event, EventBus, EventKind};
+pub use history::{ИсторияДействий, Команда};
+pub use scene::{Component, Node, SceneGraph, Transform3D};
 
 use tracing::info;
 

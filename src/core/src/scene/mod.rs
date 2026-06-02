@@ -6,16 +6,15 @@
 use std::collections::HashMap;
 use uuid::Uuid;
 
-
 use crate::error::CoreError;
 
+pub mod component;
 pub mod node;
 pub mod transform;
-pub mod component;
 
+pub use component::Component;
 pub use node::Node;
 pub use transform::Transform3D;
-pub use component::Component;
 
 /// Граф сцены — центральное дерево объектов.
 ///
@@ -63,8 +62,7 @@ impl SceneGraph {
 
     /// Удалить узел (и всех его потомков)
     pub fn удалить(&mut self, id: Uuid) -> Result<(), CoreError> {
-        let узел = self.узлы.get(&id)
-            .ok_or(CoreError::УзелНеНайден(id))?;
+        let узел = self.узлы.get(&id).ok_or(CoreError::УзелНеНайден(id))?;
 
         // Собрать всех потомков
         let потомки: Vec<Uuid> = узел.дети.clone();
@@ -92,9 +90,7 @@ impl SceneGraph {
 
     /// Привязать узел к родителю
     pub fn привязать(
-        &mut self,
-        дочерний: Uuid,
-        родитель: Uuid,
+        &mut self, дочерний: Uuid, родитель: Uuid
     ) -> Result<(), CoreError> {
         if !self.узлы.contains_key(&родитель) {
             return Err(CoreError::УзелНеНайден(родитель));
@@ -136,7 +132,8 @@ impl SceneGraph {
 
     /// Корневые узлы сцены
     pub fn корневые_узлы(&self) -> Vec<&Node> {
-        self.корни.iter()
+        self.корни
+            .iter()
             .filter_map(|id| self.узлы.get(id))
             .collect()
     }

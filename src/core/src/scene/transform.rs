@@ -1,6 +1,6 @@
 //! Трансформация объекта в 3D-пространстве
 
-use glam::{Vec3, Quat, Mat4};
+use glam::{Mat4, Quat, Vec3};
 
 /// Позиция, поворот и масштаб объекта в пространстве.
 ///
@@ -57,21 +57,13 @@ impl Transform3D {
 
     /// Матрица 4×4 (для GPU / рендера)
     pub fn матрица(&self) -> Mat4 {
-        Mat4::from_scale_rotation_translation(
-            self.масштаб,
-            self.поворот,
-            self.позиция,
-        )
+        Mat4::from_scale_rotation_translation(self.масштаб, self.поворот, self.позиция)
     }
 
     /// Поворот в углах Эйлера (градусы) — для отображения в UI
     pub fn поворот_эйлер_градусы(&self) -> Vec3 {
         let (rx, ry, rz) = self.поворот.to_euler(glam::EulerRot::XYZ);
-        Vec3::new(
-            rx.to_degrees(),
-            ry.to_degrees(),
-            rz.to_degrees(),
-        )
+        Vec3::new(rx.to_degrees(), ry.to_degrees(), rz.to_degrees())
     }
 
     /// Установить поворот из углов Эйлера (градусы) — из UI
@@ -95,9 +87,7 @@ impl Transform3D {
 
     /// Является ли трансформация единичной (объект не перемещён/повёрнут/масштабирован)
     pub fn единичная(&self) -> bool {
-        self.позиция == Vec3::ZERO
-            && self.поворот == Quat::IDENTITY
-            && self.масштаб == Vec3::ONE
+        self.позиция == Vec3::ZERO && self.поворот == Quat::IDENTITY && self.масштаб == Vec3::ONE
     }
 }
 
@@ -107,9 +97,15 @@ impl std::fmt::Display for Transform3D {
         write!(
             f,
             "pos({:.3}, {:.3}, {:.3}) rot({:.1}°, {:.1}°, {:.1}°) scale({:.3}, {:.3}, {:.3})",
-            self.позиция.x, self.позиция.y, self.позиция.z,
-            rx.to_degrees(), ry.to_degrees(), rz.to_degrees(),
-            self.масштаб.x, self.масштаб.y, self.масштаб.z,
+            self.позиция.x,
+            self.позиция.y,
+            self.позиция.z,
+            rx.to_degrees(),
+            ry.to_degrees(),
+            rz.to_degrees(),
+            self.масштаб.x,
+            self.масштаб.y,
+            self.масштаб.z,
         )
     }
 }

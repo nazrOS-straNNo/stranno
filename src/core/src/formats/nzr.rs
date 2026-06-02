@@ -3,11 +3,11 @@
 //! Бинарный формат сцены nazrOS.
 //! Структура: Заголовок (40 байт) + Секции TLV + Конец с CRC32
 
-use std::path::Path;
-use uuid::Uuid;
-use chrono::Utc;
 use crate::error::CoreError;
 use crate::scene::SceneGraph;
+use chrono::Utc;
+use std::path::Path;
+use uuid::Uuid;
 
 /// Magic-байты файла .нзр ("нзр" в UTF-8 + padding до 8 байт)
 pub const НЗР_MAGIC: &[u8; 8] = b"\xD0\xBD\xD0\xB7\xD1\x80\x00\x00";
@@ -24,23 +24,23 @@ pub mod флаги {
 /// Коды секций TLV
 pub mod секции {
     /// Граф сцены (дерево узлов)
-    pub const ГРАФ:   u16 = 0x0001;
+    pub const ГРАФ: u16 = 0x0001;
     /// Геометрия (меши, кривые)
-    pub const ГЕОМ:   u16 = 0x0002;
+    pub const ГЕОМ: u16 = 0x0002;
     /// Материалы и шейдеры
-    pub const МАТЛ:   u16 = 0x0003;
+    pub const МАТЛ: u16 = 0x0003;
     /// Анимации
-    pub const АНМ:    u16 = 0x0004;
+    pub const АНМ: u16 = 0x0004;
     /// Физические данные
-    pub const ФИЗ:    u16 = 0x0005;
+    pub const ФИЗ: u16 = 0x0005;
     /// Световые настройки
-    pub const СВЕТ:   u16 = 0x0006;
+    pub const СВЕТ: u16 = 0x0006;
     /// Камеры
-    pub const КАМ:    u16 = 0x0007;
+    pub const КАМ: u16 = 0x0007;
     /// Метаданные (автор, теги, превью-PNG)
-    pub const МЕТА:   u16 = 0x0008;
+    pub const МЕТА: u16 = 0x0008;
     /// Конец файла + CRC32
-    pub const КОН:    u16 = 0x00FF;
+    pub const КОН: u16 = 0x00FF;
 }
 
 /// Заголовок файла .нзр (40 байт)
@@ -71,12 +71,12 @@ impl НзрЗаголовок {
 
     fn сериализовать(&self) -> Vec<u8> {
         let mut буфер = Vec::with_capacity(Self::РАЗМЕР);
-        буфер.extend_from_slice(НЗР_MAGIC);                              // 8 байт
-        буфер.extend_from_slice(&self.версия.to_le_bytes());             // 4 байта
-        буфер.extend_from_slice(self.uuid_сцены.as_bytes());             // 16 байт
-        буфер.extend_from_slice(&self.создан.to_le_bytes());             // 8 байт
-        буфер.extend_from_slice(&self.флаги.to_le_bytes());              // 8 байт (нет, 4)
-        // итого: 8+4+16+8+4 = 40
+        буфер.extend_from_slice(НЗР_MAGIC); // 8 байт
+        буфер.extend_from_slice(&self.версия.to_le_bytes()); // 4 байта
+        буфер.extend_from_slice(self.uuid_сцены.as_bytes()); // 16 байт
+        буфер.extend_from_slice(&self.создан.to_le_bytes()); // 8 байт
+        буфер.extend_from_slice(&self.флаги.to_le_bytes()); // 8 байт (нет, 4)
+                                                            // итого: 8+4+16+8+4 = 40
         буфер
     }
 
@@ -98,7 +98,9 @@ impl НзрЗаголовок {
 
         let версия = u32::from_le_bytes(данные[8..12].try_into().unwrap());
         if версия > НЗР_ВЕРСИЯ {
-            return Err(CoreError::НеподдерживаемаяВерсия(версия));
+            return Err(CoreError::НеподдерживаемаяВерсия(
+                версия,
+            ));
         }
 
         let uuid_байты: [u8; 16] = данные[12..28].try_into().unwrap();
@@ -106,7 +108,12 @@ impl НзрЗаголовок {
         let создан = i64::from_le_bytes(данные[28..36].try_into().unwrap());
         let флаги = u32::from_le_bytes(данные[36..40].try_into().unwrap()) as u64;
 
-        Ok(Self { версия, uuid_сцены, создан, флаги })
+        Ok(Self {
+            версия,
+            uuid_сцены,
+            создан,
+            флаги,
+        })
     }
 }
 
@@ -129,7 +136,10 @@ impl НзрСекция {
 
     /// Попытаться прочитать секцию из буфера начиная с offset
     /// Возвращает (секция, новый_offset)
-    fn десериализовать(данные: &[u8], offset: usize) -> Result<(Self, usize), CoreError> {
+    fn десериализовать(
+        данные: &[u8],
+        offset: usize,
+    ) -> Result<(Self, usize), CoreError> {
         if offset + 6 > данные.len() {
             return Err(CoreError::НеверныйФормат {
                 ожидался: "TLV секция".into(),
@@ -137,8 +147,8 @@ impl НзрСекция {
             });
         }
 
-        let тип = u16::from_le_bytes(данные[offset..offset+2].try_into().unwrap());
-        let длина = u32::from_le_bytes(данные[offset+2..offset+6].try_into().unwrap()) as usize;
+        let тип = u16::from_le_bytes(данные[offset..offset + 2].try_into().unwrap());
+        let длина = u32::from_le_bytes(данные[offset + 2..offset + 6].try_into().unwrap()) as usize;
         let конец = offset + 6 + длина;
 
         if конец > данные.len() {
@@ -148,8 +158,14 @@ impl НзрСекция {
             });
         }
 
-        let содержимое = данные[offset+6..конец].to_vec();
-        Ok((Self { тип, данные: содержимое }, конец))
+        let содержимое = данные[offset + 6..конец].to_vec();
+        Ok((
+            Self {
+                тип,
+                данные: содержимое,
+            },
+            конец,
+        ))
     }
 }
 
@@ -182,15 +198,17 @@ impl Default for НзрМета {
 pub struct НзрФайл {
     pub заголовок: НзрЗаголовок,
     pub мета: НзрМета,
-    pub граф_данные: Vec<u8>,    // сериализованный SceneGraph (JSON пока)
+    pub граф_данные: Vec<u8>, // сериализованный SceneGraph (JSON пока)
 }
 
 impl НзрФайл {
     /// Создать из графа сцены
-    pub fn из_графа(граф: &SceneGraph, мета: НзрМета) -> Result<Self, CoreError> {
+    pub fn из_графа(
+        граф: &SceneGraph, мета: НзрМета
+    ) -> Result<Self, CoreError> {
         // Сериализуем граф в JSON (bincode — следующий этап)
-        let граф_данные = serde_json::to_vec(граф)
-            .map_err(|e| CoreError::Внутренняя(e.to_string()))?;
+        let граф_данные =
+            serde_json::to_vec(граф).map_err(|e| CoreError::Внутренняя(e.to_string()))?;
 
         Ok(Self {
             заголовок: НзрЗаголовок::новый(Uuid::new_v4()),
@@ -209,25 +227,34 @@ impl НзрФайл {
         // 2. Секция МЕТА
         let мета_json = serde_json::to_vec(&self.мета)
             .map_err(|e| CoreError::Внутренняя(e.to_string()))?;
-        буфер.extend_from_slice(&НзрСекция {
-            тип: секции::МЕТА,
-            данные: мета_json,
-        }.сериализовать());
+        буфер.extend_from_slice(
+            &НзрСекция {
+                тип: секции::МЕТА,
+                данные: мета_json,
+            }
+            .сериализовать(),
+        );
 
         // 3. Секция ГРАФ (с zstd-сжатием)
         let граф_сжат = zstd::encode_all(self.граф_данные.as_slice(), 3)
             .map_err(|e| CoreError::Внутренняя(e.to_string()))?;
-        буфер.extend_from_slice(&НзрСекция {
-            тип: секции::ГРАФ,
-            данные: граф_сжат,
-        }.сериализовать());
+        буфер.extend_from_slice(
+            &НзрСекция {
+                тип: секции::ГРАФ,
+                данные: граф_сжат,
+            }
+            .сериализовать(),
+        );
 
         // 4. Секция КОН с CRC32
         let crc = crc32fast::hash(&буфер);
-        буфер.extend_from_slice(&НзрСекция {
-            тип: секции::КОН,
-            данные: crc.to_le_bytes().to_vec(),
-        }.сериализовать());
+        буфер.extend_from_slice(
+            &НзрСекция {
+                тип: секции::КОН,
+                данные: crc.to_le_bytes().to_vec(),
+            }
+            .сериализовать(),
+        );
 
         Ok(буфер)
     }
@@ -243,7 +270,8 @@ impl НзрФайл {
 
         // Читаем секции
         loop {
-            let (секция, новый_offset) = НзрСекция::десериализовать(данные, offset)?;
+            let (секция, новый_offset) =
+                НзрСекция::десериализовать(данные, offset)?;
             offset = новый_offset;
 
             match секция.тип {
@@ -259,11 +287,11 @@ impl НзрФайл {
                 секции::КОН => {
                     // Проверить CRC32
                     if секция.данные.len() >= 4 {
-                        let сохранённый_crc = u32::from_le_bytes(
-                            секция.данные[0..4].try_into().unwrap()
-                        );
+                        let сохранённый_crc =
+                            u32::from_le_bytes(секция.данные[0..4].try_into().unwrap());
                         // CRC считается по всему файлу до секции КОН
-                        let вычисленный_crc = crc32fast::hash(&данные[..offset - секция.данные.len() - 6]);
+                        let вычисленный_crc =
+                            crc32fast::hash(&данные[..offset - секция.данные.len() - 6]);
                         if сохранённый_crc != вычисленный_crc {
                             return Err(CoreError::НарушенаКонтрольнаяСумма);
                         }
@@ -276,10 +304,16 @@ impl НзрФайл {
                 }
             }
 
-            if offset >= данные.len() { break; }
+            if offset >= данные.len() {
+                break;
+            }
         }
 
-        Ok(Self { заголовок, мета, граф_данные })
+        Ok(Self {
+            заголовок,
+            мета,
+            граф_данные,
+        })
     }
 
     /// Восстановить SceneGraph из файла
@@ -332,7 +366,7 @@ impl НзрПисатель {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::scene::{SceneGraph, Node};
+    use crate::scene::{Node, SceneGraph};
     use tempfile::tempdir;
 
     #[test]
