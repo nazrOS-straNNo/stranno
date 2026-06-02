@@ -1,0 +1,48 @@
+.рабочаяОбласть {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--цвет-фон-глубокий);
+}
+
+.заглушка {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: var(--цвет-фон-глубокий);
+}
+
+.заглушкаКонтент {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.заглушкаИкона {
+  font-size: 48px;
+  color: var(--цвет-граница-яркая);
+  line-height: 1;
+}
+
+.заглушкаНазвание {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--цвет-текст-вторичный);
+  letter-spacing: 0.12em;
+}
+
+.заглушкаСтатус {
+  font-size: 11px;
+  color: var(--цвет-текст-тихий);
+  letter-spacing: 0.06em;
+}
+
+.заглушкаВерсия {
+  font-size: 10px;
+  color: var(--цвет-граница-яркая);
+  margin-top: 4px;
+}

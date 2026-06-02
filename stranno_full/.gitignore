@@ -1,0 +1,84 @@
+# Rust
+target/
+Cargo.lock
+*.rs.bk
+
+# Node / JS / TS
+node_modules/
+dist/
+build/
+.next/
+.nuxt/
+*.tsbuildinfo
+
+# Tauri
+src-tauri/target/
+
+# Python (утилиты)
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+
+# C / C++
+*.o
+*.so
+*.dylib
+*.dll
+*.a
+*.lib
+CMakeFiles/
+cmake-build-*/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+
+# IDE
+.idea/
+.vscode/settings.json
+*.sublime-project
+*.sublime-workspace
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# Логи
+*.log
+logs/
+
+# Временные файлы рендера
+render_cache/
+*.tmp_render
+
+# nazrOS форматы — бинарники в репо не хранить
+# (только примеры в /assets/examples/)
+*.нзр
+*.звк
+*.эфф
+*.анм
+*.мтр
+*.мир
+!assets/examples/**
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+.terraform.lock.hcl
+
+# Docker
+*.tar
+
+# Coverage
+coverage/
+*.lcov

@@ -1,0 +1,203 @@
+.шапка {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: var(--высота-шапки);
+  background: var(--цвет-фон-панель);
+  border-bottom: 1px solid var(--цвет-граница-тихая);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* ─── Логотип ─── */
+.лого {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  height: 100%;
+  border-right: 1px solid var(--цвет-граница-тихая);
+  flex-shrink: 0;
+}
+
+.логоИкона {
+  font-size: 18px;
+  color: var(--цвет-фиолет-400);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.логоТекст {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.логоНазвание {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--цвет-текст-первичный);
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.логоВерсия {
+  font-size: 9px;
+  color: var(--цвет-текст-тихий);
+  letter-spacing: 0.03em;
+  line-height: 1;
+}
+
+/* ─── Навигация ─── */
+.навигация {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+.навигация::-webkit-scrollbar { display: none; }
+
+.вкладка {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  height: 100%;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--цвет-текст-вторичный);
+  font-family: var(--шрифт-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--переход-быстрый), border-color var(--переход-быстрый),
+              background var(--переход-быстрый);
+}
+
+.вкладка:hover {
+  color: var(--цвет-текст-первичный);
+  background: var(--цвет-фон-hover);
+}
+
+.активная {
+  color: var(--цвет-фиолет-300) !important;
+  border-bottom-color: var(--цвет-фиолет-500) !important;
+  background: rgba(124, 58, 237, 0.08) !important;
+}
+
+.скоро {
+  opacity: 0.45;
+}
+.скоро:hover {
+  opacity: 0.65;
+}
+
+/* ─── Статус ядра ─── */
+.статусЯдра {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 0 12px;
+  border-left: 1px solid var(--цвет-граница-тихая);
+  flex-shrink: 0;
+}
+
+.статусСтрока {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.точкаОК {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--цвет-зелёный-400);
+  box-shadow: 0 0 4px var(--цвет-зелёный-400);
+  flex-shrink: 0;
+}
+
+.точкаОшибка {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--цвет-красный-400);
+  box-shadow: 0 0 4px var(--цвет-красный-400);
+  flex-shrink: 0;
+}
+
+.статусТекст {
+  font-size: 9px;
+  color: var(--цвет-текст-тихий);
+  letter-spacing: 0.03em;
+}
+
+.статусЗначение {
+  font-size: 9px;
+  color: var(--цвет-текст-вторичный);
+  font-weight: 600;
+}
+
+.памятьБар {
+  width: 48px;
+  height: 3px;
+  background: var(--цвет-граница-базовая);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.памятьЗаполнение {
+  height: 100%;
+  background: linear-gradient(90deg, var(--цвет-фиолет-500), var(--цвет-циан-400));
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+/* ─── Пользователь ─── */
+.пользователь {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border-left: 1px solid var(--цвет-граница-тихая);
+  flex-shrink: 0;
+}
+
+.пользовательИнфо {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+}
+
+.пользовательИмя {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--цвет-текст-первичный);
+  line-height: 1;
+}
+
+.пользовательРоль {
+  font-size: 9px;
+  color: var(--цвет-текст-тихий);
+  line-height: 1;
+}
+
+.аватар {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--цвет-фиолет-500), var(--цвет-циан-400));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}

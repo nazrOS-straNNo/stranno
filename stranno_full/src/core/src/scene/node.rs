@@ -8,7 +8,7 @@ use super::component::Component;
 ///
 /// Каждый объект в сцене (меш, камера, свет, аудио-источник и т.д.)
 /// — это узел с набором компонентов.
-#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Node {
     /// Уникальный идентификатор
     pub id: Uuid,
