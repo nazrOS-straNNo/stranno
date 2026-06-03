@@ -1,0 +1,47 @@
+.модуль { display: grid; grid-template-columns: 150px 1fr 200px; width: 100%; height: 100%; overflow: hidden; }
+
+.левая { background: var(--цвет-фон-панель); border-right: 1px solid var(--цвет-граница-тихая); overflow-y: auto; padding: 8px; display: flex; flex-direction: column; gap: 2px; }
+
+.заг { font-size: 9px; font-weight: 600; color: var(--цвет-текст-тихий); letter-spacing: 0.1em; padding: 4px 0 2px; }
+
+.элемент { font-size: 10px; color: var(--цвет-текст-вторичный); padding: 4px 6px; border-radius: 3px; cursor: pointer; }
+.элемент:hover { background: var(--цвет-фон-hover); }
+
+.быстрый { font-size: 9px; color: var(--цвет-текст-вторичный); padding: 3px 6px; border-radius: 3px; border: 1px solid var(--цвет-граница-базовая); cursor: pointer; margin-bottom: 2px; }
+.быстрый:hover { border-color: var(--цвет-фиолет-400); }
+
+.центр { display: flex; flex-direction: column; overflow: hidden; }
+
+.тулбар { display: flex; align-items: center; gap: 8px; padding: 0 12px; height: 28px; background: var(--цвет-фон-панель); border-bottom: 1px solid var(--цвет-граница-тихая); flex-shrink: 0; }
+
+.имяСети { font-size: 10px; color: var(--цвет-текст-вторичный); font-weight: 600; }
+.акцент { color: var(--цвет-фиолет-300); }
+
+.кнопка { padding: 2px 8px; background: var(--цвет-фон-виджет); border: 1px solid var(--цвет-граница-базовая); border-radius: 3px; font-family: var(--шрифт-ui); font-size: 9px; color: var(--цвет-текст-вторичный); cursor: pointer; }
+.кнопка:hover { border-color: var(--цвет-фиолет-400); }
+
+.холст { flex: 1; position: relative; background: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(26,32,53,0.5) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(26,32,53,0.5) 40px), #080a0f; overflow: hidden; }
+
+.svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+.нод { position: absolute; width: 180px; border: 1px solid var(--цвет-граница-базовая); border-radius: 5px; cursor: grab; user-select: none; padding-bottom: 6px; }
+.нод:hover { border-color: var(--цвет-граница-яркая); }
+.нод:active { cursor: grabbing; }
+
+.активный { border-color: var(--цвет-фиолет-500) !important; box-shadow: 0 0 12px rgba(124,58,237,0.3); }
+
+.нодЗаг { font-size: 10px; font-weight: 600; color: var(--цвет-текст-первичный); padding: 6px 8px 2px; }
+.нодТип { font-size: 9px; color: var(--цвет-текст-тихий); padding: 0 8px 4px; }
+
+.портыРяд { display: flex; justify-content: space-between; padding: 0 4px; }
+
+.портВход { width: 8px; height: 8px; border-radius: 50%; background: #7c3aed; border: 1px solid rgba(255,255,255,0.2); cursor: crosshair; }
+.портВыход { width: 8px; height: 8px; border-radius: 50%; background: #22d3ee; border: 1px solid rgba(255,255,255,0.2); cursor: crosshair; }
+
+.правая { background: var(--цвет-фон-панель); border-left: 1px solid var(--цвет-граница-тихая); overflow-y: auto; padding: 8px; display: flex; flex-direction: column; gap: 2px; }
+
+.превью { width: 100%; aspect-ratio: 16/9; background: radial-gradient(ellipse at 30% 40%, rgba(124,58,237,0.15) 0%, #060810 100%); border-radius: 4px; border: 1px solid var(--цвет-граница-базовая); margin-bottom: 4px; }
+
+.строка { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px solid var(--цвет-граница-тихая); }
+.м { font-size: 10px; color: var(--цвет-текст-тихий); }
+.з { font-size: 10px; color: var(--цвет-текст-первичный); }
