@@ -1,27 +1,16 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import styles from "./МодульТочки.module.css";
 
-interface Нод {
-  id: string;
-  тип: string;
-  имя: string;
-  x: number;
-  y: number;
-}
-
-interface Соединение {
-  id: string;
-  из: string;
-  в: string;
-}
+interface Нод { id: string; тип: string; имя: string; x: number; y: number; }
+interface Соединение { id: string; из: string; в: string; }
 
 const НОДЫ_НАЧАЛО: Нод[] = [
   { id: "n1", тип: "Read",       имя: "Read_01",       x: 60,  y: 80  },
-  { id: "n2", тип: "Read",       имя: "Read_02",       x: 60,  y: 220 },
-  { id: "n3", тип: "Merge",      имя: "Merge_01",      x: 280, y: 140 },
-  { id: "n4", тип: "Glow",       имя: "Glow_01",       x: 480, y: 80  },
-  { id: "n5", тип: "ColorGrade", имя: "ColorGrade_01", x: 480, y: 220 },
-  { id: "n6", тип: "Output",     имя: "Final_Out",     x: 700, y: 150 },
+  { id: "n2", тип: "Read",       имя: "Read_02",       x: 60,  y: 280 },
+  { id: "n3", тип: "Merge",      имя: "Merge_01",      x: 300, y: 160 },
+  { id: "n4", тип: "Glow",       имя: "Glow_01",       x: 520, y: 60  },
+  { id: "n5", тип: "ColorGrade", имя: "ColorGrade_01", x: 520, y: 280 },
+  { id: "n6", тип: "Output",     имя: "Final_Out",     x: 740, y: 170 },
 ];
 
 const СОЕДИНЕНИЯ: Соединение[] = [
@@ -33,12 +22,11 @@ const СОЕДИНЕНИЯ: Соединение[] = [
 ];
 
 const ЦВЕТА: Record<string, string> = {
-  Read: "#1a2535",
-  Merge: "#1a2a1a",
-  Glow: "#2a2a1a",
-  ColorGrade: "#2a1a2a",
-  Output: "#1a1a2a",
+  Read: "#1a2535", Merge: "#1a2a1a", Glow: "#2a2a1a", ColorGrade: "#2a1a2a", Output: "#1a1a2a",
 };
+
+const НОД_ШИРИНА = 180;
+const НОД_ВЫСОТА = 60;
 
 export function МодульТочки() {
   const [ноды, setНоды] = useState<Нод[]>(НОДЫ_НАЧАЛО);
@@ -71,9 +59,15 @@ export function МодульТочки() {
     };
   }, [двигать, отпустить]);
 
-  const позиция = (id: string, выход: boolean) => {
-    const н = ноды.find(n => n.id === id)!;
-    return { x: н.x + (выход ? 180 : 0), y: н.y + 20 };
+  // Позиция порта — из актуального состояния нодов
+  const позВыход = (нодыСписок: Нод[], id: string) => {
+    const н = нодыСписок.find(n => n.id === id)!;
+    return { x: н.x + НОД_ШИРИНА, y: н.y + НОД_ВЫСОТА / 2 };
+  };
+
+  const позВход = (нодыСписок: Нод[], id: string) => {
+    const н = нодыСписок.find(n => n.id === id)!;
+    return { x: н.x, y: н.y + НОД_ВЫСОТА / 2 };
   };
 
   const активныйНод = ноды.find(n => n.id === активный);
@@ -101,12 +95,13 @@ export function МодульТочки() {
         <div className={styles.холст}>
           <svg className={styles.svg}>
             {СОЕДИНЕНИЯ.map(с => {
-              const из = позиция(с.из, true);
-              const в = позиция(с.в, false);
+              const из = позВыход(ноды, с.из);
+              const в = позВход(ноды, с.в);
+              const cx = (из.x + в.x) / 2;
               return (
                 <path key={с.id}
-                  d={`M${из.x},${из.y} C${из.x+60},${из.y} ${в.x-60},${в.y} ${в.x},${в.y}`}
-                  stroke="#7c3aed" strokeWidth="1.5" fill="none" opacity="0.6"/>
+                  d={`M${из.x},${из.y} C${cx},${из.y} ${cx},${в.y} ${в.x},${в.y}`}
+                  stroke="#7c3aed" strokeWidth="1.5" fill="none" opacity="0.7"/>
               );
             })}
           </svg>
