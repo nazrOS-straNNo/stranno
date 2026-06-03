@@ -58,7 +58,7 @@ pub struct НзрЗаголовок {
 
 impl НзрЗаголовок {
     /// Размер заголовка в байтах
-    pub const РАЗМЕР: usize = 40;
+    pub const РАЗМЕР: usize = 44;
 
     fn новый(uuid_сцены: Uuid) -> Self {
         Self {
@@ -106,7 +106,7 @@ impl НзрЗаголовок {
         let uuid_байты: [u8; 16] = данные[12..28].try_into().unwrap();
         let uuid_сцены = Uuid::from_bytes(uuid_байты);
         let создан = i64::from_le_bytes(данные[28..36].try_into().unwrap());
-        let флаги = u32::from_le_bytes(данные[36..40].try_into().unwrap()) as u64;
+        let флаги = u64::from_le_bytes(данные[36..44].try_into().unwrap());
 
         Ok(Self {
             версия,
