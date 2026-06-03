@@ -4,7 +4,7 @@
 //! все модули: РУКИ, МУЛЬТ, ТОЧКИ, СТУДИЯ, ПОЛЕ, ШИНА, ГЛЮК...
 
 #![forbid(unsafe_code)] // безопасность по умолчанию
-#![warn(missing_docs)]
+#![allow(missing_docs)]
 #![warn(clippy::all)]
 #![allow(non_ascii_idents)] // разрешить кириллические идентификаторы
 
