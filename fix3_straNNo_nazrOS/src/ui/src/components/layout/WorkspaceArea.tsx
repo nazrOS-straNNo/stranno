@@ -1,11 +1,8 @@
 import { МодульИд } from "../../store/appStore";
 import { МодульРуки } from "../modules/МодульРуки";
 import { МодульТочки } from "../modules/МодульТочки";
-
-
 import { МодульСтудия } from "../modules/МодульСтудия";
 import { МодульШина } from "../modules/МодульШина";
-
 import styles from "./WorkspaceArea.module.css";
 
 interface Props {
@@ -15,11 +12,6 @@ interface Props {
 export function WorkspaceArea({ модуль }: Props) {
   return (
     <main className={styles.рабочаяОбласть}>
-<<<<<<< HEAD
-      {модуль === "руки"  && <МодульРуки />}
-      {модуль === "точки" && <МодульТочки />}
-      {модуль !== "руки" && модуль !== "точки" && <МодульЗаглушка имя={модуль} />}
-=======
       {модуль === "руки"   && <МодульРуки />}
       {модуль === "точки"  && <МодульТочки />}
       {модуль === "студия" && <МодульСтудия />}
@@ -27,7 +19,6 @@ export function WorkspaceArea({ модуль }: Props) {
       {!["руки","точки","студия","шина"].includes(модуль) && (
         <МодульЗаглушка имя={модуль} />
       )}
->>>>>>> 2f51163 (feat: модули СТУДИЯ + ШИНА (DAW))
     </main>
   );
 }
