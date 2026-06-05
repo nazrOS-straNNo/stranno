@@ -1,0 +1,81 @@
+.модуль { display: grid; grid-template-columns: 150px 1fr 220px; width: 100%; height: 100%; overflow: hidden; }
+
+/* ─── Левая ─── */
+.левая { background: var(--цвет-фон-панель); border-right: 1px solid var(--цвет-граница-тихая); overflow-y: auto; padding: 8px; display: flex; flex-direction: column; gap: 1px; }
+.заг { font-size: 9px; font-weight: 600; color: var(--цвет-текст-тихий); letter-spacing: 0.1em; padding: 4px 0 2px; flex-shrink: 0; }
+.поиск { width: 100%; padding: 3px 6px; background: var(--цвет-фон-виджет); border: 1px solid var(--цвет-граница-базовая); border-radius: 3px; color: var(--цвет-текст-первичный); font-family: var(--шрифт-ui); font-size: 9px; margin-bottom: 4px; outline: none; }
+.категория { display: flex; justify-content: space-between; padding: 3px 4px; border-radius: 3px; cursor: pointer; font-size: 9px; color: var(--цвет-текст-вторичный); }
+.категория:hover { background: var(--цвет-фон-hover); }
+.счётчик { color: var(--цвет-текст-тихий); font-size: 8px; }
+.избранный { padding: 3px 4px; cursor: pointer; }
+.избрИмя { font-size: 9px; color: var(--цвет-фиолет-300); }
+
+/* ─── Центр ─── */
+.центр { display: flex; flex-direction: column; overflow: hidden; }
+
+.тулбар { display: flex; align-items: center; gap: 8px; padding: 0 12px; height: 32px; background: var(--цвет-фон-панель); border-bottom: 1px solid var(--цвет-граница-тихая); flex-shrink: 0; }
+.бпм { font-size: 13px; font-weight: 700; color: var(--цвет-текст-первичный); }
+.тактПодпись { font-size: 11px; color: var(--цвет-текст-вторичный); }
+.тональность { font-size: 10px; color: var(--цвет-текст-тихий); }
+.кнопкаТулбар { padding: 3px 10px; background: var(--цвет-фон-виджет); border: 1px solid var(--цвет-граница-базовая); border-radius: 3px; font-size: 11px; color: var(--цвет-текст-вторичный); cursor: pointer; }
+.кнопкаТулбар:hover { border-color: var(--цвет-фиолет-400); }
+.таймкод { font-size: 12px; color: var(--цвет-фиолет-300); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* Таймлайн */
+.таймлайн { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.шкала { display: flex; height: 18px; border-bottom: 1px solid var(--цвет-граница-тихая); flex-shrink: 0; }
+.шкалаОтступ { width: 120px; flex-shrink: 0; }
+.шкалаПолосы { flex: 1; display: flex; position: relative; }
+.шкалаЕд { flex: 1; border-left: 1px solid var(--цвет-граница-тихая); display: flex; align-items: center; font-size: 7px; color: var(--цвет-текст-тихий); padding-left: 2px; cursor: pointer; }
+.шкалаЕд:hover { background: var(--цвет-фон-hover); }
+
+.трекиОбёртка { flex: 1; overflow-y: auto; overflow-x: hidden; }
+
+.трек { display: flex; height: 32px; border-bottom: 1px solid var(--цвет-граница-тихая); cursor: pointer; }
+.трек:hover { background: rgba(255,255,255,0.02); }
+.трекАктивный { background: rgba(124,58,237,0.06) !important; }
+
+.трекЗаг { width: 120px; flex-shrink: 0; display: flex; align-items: center; gap: 3px; padding: 0 4px; }
+.трекИмя { font-size: 8px; color: var(--цвет-текст-вторичный); flex: 1; overflow: hidden; white-space: nowrap; }
+.трекКнопки { display: flex; gap: 1px; }
+.мутКнопка,.солоКнопка,.рКнопка { padding: 1px 3px; font-size: 7px; border: 1px solid var(--цвет-граница-базовая); border-radius: 2px; background: none; color: var(--цвет-текст-тихий); cursor: pointer; font-family: var(--шрифт-ui); font-weight: 600; }
+.мутАктивен { background: rgba(239,68,68,0.3); border-color: #ef4444; color: #ef4444; }
+.солоАктивен { background: rgba(245,158,11,0.3); border-color: #f59e0b; color: #f59e0b; }
+.громкостьСлайдер { width: 40px; height: 3px; -webkit-appearance: none; appearance: none; background: var(--цвет-граница-базовая); border-radius: 2px; }
+.громкостьСлайдер::-webkit-slider-thumb { -webkit-appearance: none; width: 8px; height: 8px; border-radius: 50%; background: var(--цвет-фиолет-400); }
+
+.трекПолосы { flex: 1; position: relative; overflow: hidden; }
+.клип { position: absolute; top: 2px; bottom: 2px; border: 1px solid; border-radius: 2px; overflow: hidden; background: rgba(0,0,0,0.3); }
+.клипМут { opacity: 0.3; }
+.курсорЛиния { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--цвет-фиолет-300); pointer-events: none; z-index: 10; box-shadow: 0 0 4px var(--цвет-фиолет-400); }
+
+/* Граф-редактор */
+.графРедактор { height: 50px; border-top: 1px solid var(--цвет-граница-тихая); position: relative; flex-shrink: 0; padding: 4px 8px; }
+.графМетка { font-size: 8px; color: var(--цвет-текст-тихий); position: absolute; top: 4px; left: 8px; }
+
+/* ─── Правая ─── */
+.правая { background: var(--цвет-фон-панель); border-left: 1px solid var(--цвет-граница-тихая); overflow-y: auto; padding: 8px; display: flex; flex-direction: column; gap: 2px; }
+
+.синтВкладки { display: flex; flex-wrap: wrap; gap: 2px; margin-bottom: 6px; }
+.синтВкладка { padding: 2px 5px; background: none; border: 1px solid var(--цвет-граница-базовая); border-radius: 3px; font-family: var(--шрифт-ui); font-size: 7px; color: var(--цвет-текст-тихий); cursor: pointer; }
+.синтВкладка:hover { border-color: var(--цвет-фиолет-400); color: var(--цвет-фиолет-300); }
+
+.осцилляторы { display: flex; flex-direction: column; gap: 4px; margin-bottom: 4px; }
+.осц { background: var(--цвет-фон-виджет); border: 1px solid var(--цвет-граница-базовая); border-radius: 4px; padding: 5px; }
+.осцИмя { font-size: 9px; font-weight: 600; color: var(--цвет-текст-первичный); display: block; margin-bottom: 4px; }
+.осцПарамы { display: flex; gap: 8px; margin-bottom: 3px; }
+.осцПар { display: flex; flex-direction: column; gap: 1px; }
+.пМ { font-size: 7px; color: var(--цвет-текст-тихий); }
+.пЗ { font-size: 9px; color: var(--цвет-текст-первичный); }
+.осцВолна { display: block; }
+
+/* Микшер */
+.микшер { display: flex; gap: 3px; height: 80px; align-items: flex-end; margin-bottom: 4px; }
+.канал { display: flex; flex-direction: column; align-items: center; gap: 2px; flex: 1; height: 100%; }
+.мастер { flex: 1.5; }
+.фейдерОбёртка { flex: 1; width: 100%; background: var(--цвет-фон-виджет); border: 1px solid var(--цвет-граница-базовая); border-radius: 2px; overflow: hidden; display: flex; align-items: flex-end; }
+.уровень { width: 100%; border-radius: 2px; transition: height 0.1s; }
+.каналИмя { font-size: 6px; color: var(--цвет-текст-тихий); text-align: center; white-space: nowrap; overflow: hidden; width: 100%; }
+
+.экспортКнопка { margin-top: 8px; padding: 6px; background: rgba(124,58,237,0.2); border: 1px solid var(--цвет-фиолет-500); border-radius: 4px; font-family: var(--шрифт-ui); font-size: 10px; color: var(--цвет-фиолет-300); cursor: pointer; font-weight: 700; letter-spacing: 0.08em; width: 100%; }
+.экспортКнопка:hover { background: rgba(124,58,237,0.35); }

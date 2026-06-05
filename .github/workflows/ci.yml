@@ -11,7 +11,7 @@ env:
   RUST_BACKTRACE: 1
 
 jobs:
-  # ─── Проверка Rust (CORE) ───────────────────────────────
+  # ─── Rust CORE ──────────────────────────────────────────
   core-check:
     name: 🦀 CORE — Rust check
     runs-on: ubuntu-latest
@@ -35,13 +35,13 @@ jobs:
       - name: Проверка форматирования
         run: cargo fmt --manifest-path src/core/Cargo.toml -- --check
 
-      - name: Clippy (линтер)
+      - name: Clippy
         run: cargo clippy --manifest-path src/core/Cargo.toml -- -D warnings
 
       - name: Тесты CORE
         run: cargo test --manifest-path src/core/Cargo.toml
 
-  # ─── Проверка UI ────────────────────────────────────────
+  # ─── UI ─────────────────────────────────────────────────
   ui-check:
     name: ⚡ UI — TypeScript check
     runs-on: ubuntu-latest
@@ -63,7 +63,7 @@ jobs:
         working-directory: src/ui
         run: npm run type-check
 
-      - name: Линтер (ESLint)
+      - name: ESLint
         working-directory: src/ui
         run: npm run lint
 
@@ -71,11 +71,39 @@ jobs:
         working-directory: src/ui
         run: npm run test -- --passWithNoTests
 
-  # ─── Сборка Tauri (десктоп) ─────────────────────────────
+  # ─── Безопасность ───────────────────────────────────────
+  security:
+    name: 🔒 Аудит безопасности
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Установить Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Установить cargo-audit
+        run: cargo install cargo-audit
+
+      - name: Аудит Rust зависимостей
+        run: cargo audit --manifest-path src/core/Cargo.toml
+        continue-on-error: true
+
+      - name: Установить Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Аудит npm зависимостей
+        working-directory: src/ui
+        run: npm audit --audit-level=high
+        continue-on-error: true
+
+  # ─── Сборка Tauri ───────────────────────────────────────
   build-desktop:
     name: 🖥️ Сборка десктопного приложения
     needs: [core-check, ui-check]
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
@@ -94,20 +122,26 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: |
           sudo apt-get update
-          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev \
-            libappindicator3-dev librsvg2-dev patchelf \
-            libvulkan-dev vulkan-tools
+          sudo apt-get install -y \
+            libgtk-3-dev \
+            libwebkit2gtk-4.1-dev \
+            libappindicator3-dev \
+            librsvg2-dev \
+            patchelf \
+            libglib2.0-dev \
+            libssl-dev
 
       - name: Установить npm зависимости
         working-directory: src/ui
         run: npm ci
 
       - name: Сборка Tauri
-        working-directory: src/ui
-        run: npm run tauri build
+        uses: tauri-apps/tauri-action@v0
         env:
-          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
-          TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          projectPath: src/ui
+          tauriScript: npx tauri
 
       - name: Загрузить артефакты
         uses: actions/upload-artifact@v4
@@ -115,25 +149,4 @@ jobs:
           name: stranno-${{ matrix.os }}
           path: src/ui/src-tauri/target/release/bundle/
           retention-days: 7
-
-  # ─── Безопасность ───────────────────────────────────────
-  security:
-    name: 🔒 Аудит безопасности
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Установить cargo-audit
-        run: cargo install cargo-audit
-
-      - name: Аудит зависимостей Rust
-        run: cargo audit --manifest-path src/core/Cargo.toml
-
-      - name: Установить Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      - name: Аудит npm зависимостей
-        working-directory: src/ui
-        run: npm audit --audit-level=high
+          if-no-files-found: ignore

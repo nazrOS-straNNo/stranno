@@ -1,0 +1,30 @@
+[package]
+name = "stranno"
+version = "0.1.0"
+description = "СТРАННО — цифровая среда создания миров от nazrOS"
+authors = ["nazrOS Team"]
+edition = "2021"
+
+[lib]
+name = "stranno_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[[bin]]
+name = "stranno"
+path = "src/main.rs"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-shell = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true
