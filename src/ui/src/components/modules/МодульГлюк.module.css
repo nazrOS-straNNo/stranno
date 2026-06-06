@@ -1,0 +1,111 @@
+
+.модуль { display: grid; grid-template-columns: 150px 1fr 200px; width: 100%; height: 100%; overflow: hidden; }
+
+/* ─── Левая ─── */
+.левая { background: var(--цвет-фон-панель); border-right: 1px solid var(--цвет-граница-тихая); overflow-y: auto; padding: 8px; display: flex; flex-direction: column; gap: 1px; }
+.заг { font-size: 9px; font-weight: 600; color: var(--цвет-текст-тихий); letter-spacing: 0.1em; padding: 4px 0 2px; flex-shrink: 0; }
+.категория { display: flex; justify-content: space-between; padding: 3px 4px; border-radius: 3px; cursor: pointer; font-size: 9px; color: var(--цвет-текст-вторичный); }
+.категория:hover { background: var(--цвет-фон-hover); }
+.счётчик { color: var(--цвет-текст-тихий); font-size: 8px; }
+
+.пресеты { display: flex; flex-direction: column; gap: 3px; }
+.пресет { display: flex; align-items: center; gap: 6px; cursor: pointer; padding: 2px; border-radius: 3px; }
+.пресет:hover { background: var(--цвет-фон-hover); }
+.пресетПревью { width: 32px; height: 24px; border-radius: 3px; border: 1px solid var(--цвет-граница-базовая); position: relative; overflow: hidden; flex-shrink: 0; }
+.пресетСвечение { position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(124,58,237,0.4) 0%, transparent 70%); }
+.пресетИмя { font-size: 8px; color: var(--цвет-текст-вторичный); }
+
+.добавитьКнопка { margin-top: 3px; padding: 3px 6px; background: none; border: 1px dashed var(--цвет-граница-яркая); border-radius: 3px; font-family: var(--шрифт-ui); font-size: 8px; color: var(--цвет-текст-тихий); cursor: pointer; width: 100%; text-align: left; }
+.добавитьКнопка:hover { border-color: var(--цвет-фиолет-400); color: var(--цвет-фиолет-300); }
+
+.действие { font-size: 9px; color: var(--цвет-текст-вторичный); padding: 3px 6px; border-radius: 3px; cursor: pointer; }
+.действие:hover { background: var(--цвет-фон-hover); }
+
+/* ─── Центр ─── */
+.центр { display: flex; flex-direction: column; overflow: hidden; }
+
+.тулбар { display: flex; align-items: center; gap: 8px; padding: 0 10px; height: 28px; background: var(--цвет-фон-панель); border-bottom: 1px solid var(--цвет-граница-тихая); flex-shrink: 0; }
+.акцент { font-size: 10px; color: var(--цвет-фиолет-300); font-weight: 600; }
+.камераСелект { font-size: 9px; color: var(--цвет-текст-вторичный); cursor: pointer; padding: 2px 6px; background: var(--цвет-фон-виджет); border-radius: 3px; border: 1px solid var(--цвет-граница-базовая); }
+.кадрМетка { font-size: 9px; color: var(--цвет-фиолет-300); font-weight: 600; }
+.инфо { font-size: 10px; color: var(--цвет-текст-тихий); cursor: pointer; }
+
+/* Превью */
+.превью { height: 220px; flex-shrink: 0; position: relative; background: radial-gradient(ellipse at 50% 50%, #0a0518 0%, #050810 100%); overflow: hidden; border-bottom: 1px solid var(--цвет-граница-тихая); }
+
+.взрывЦентр { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 120px; height: 120px; }
+.взрывСфера { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle, #b87ef7 0%, #7c3aed 40%, transparent 70%); box-shadow: 0 0 30px rgba(124,58,237,0.8), 0 0 60px rgba(124,58,237,0.4); animation: пульс 0.5s ease-in-out infinite alternate; }
+@keyframes пульс { from { transform: translate(-50%,-50%) scale(0.9); } to { transform: translate(-50%,-50%) scale(1.1); } }
+
+.взрывКольцо1 { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 80px; height: 80px; border-radius: 50%; border: 1px solid rgba(184,126,247,0.4); animation: расширить 1s ease-out infinite; }
+.взрывКольцо2 { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 110px; height: 110px; border-radius: 50%; border: 1px solid rgba(124,58,237,0.2); animation: расширить 1s ease-out infinite 0.3s; }
+@keyframes расширить { 0% { transform: translate(-50%,-50%) scale(0.5); opacity: 1; } 100% { transform: translate(-50%,-50%) scale(1.5); opacity: 0; } }
+
+.взрывЛучи { position: absolute; top: 50%; left: 50%; width: 0; height: 0; }
+.луч { position: absolute; width: 60px; height: 1px; background: linear-gradient(90deg, rgba(124,58,237,0.8), transparent); transform-origin: 0 0; }
+
+.частица { position: absolute; border-radius: 50%; background: #b87ef7; box-shadow: 0 0 4px #7c3aed; animation: мерцать 1s ease-in-out infinite; transform: translate(-50%,-50%); }
+@keyframes мерцать { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+.аннотация { position: absolute; font-size: 7px; color: var(--цвет-текст-тихий); background: rgba(8,10,15,0.8); padding: 3px 5px; border-radius: 3px; border: 1px solid var(--цвет-граница-тихая); line-height: 1.4; }
+
+.превьюПарамы { position: absolute; right: 8px; top: 8px; display: flex; flex-direction: column; gap: 2px; }
+.парам { display: flex; gap: 6px; }
+.парамМ { font-size: 8px; color: var(--цвет-текст-тихий); }
+.парамЗ { font-size: 8px; color: var(--цвет-текст-первичный); }
+
+.превьюКонтролы { position: absolute; bottom: 6px; left: 8px; right: 8px; display: flex; align-items: center; gap: 4px; }
+.контрКнопка { padding: 2px 6px; background: rgba(13,16,23,0.8); border: 1px solid var(--цвет-граница-базовая); border-radius: 3px; font-size: 10px; color: var(--цвет-текст-вторичный); cursor: pointer; }
+.контрКнопка:hover { border-color: var(--цвет-фиолет-400); }
+.прогрессСлайдер { flex: 1; height: 3px; -webkit-appearance: none; appearance: none; background: var(--цвет-граница-базовая); border-radius: 2px; }
+.прогрессСлайдер::-webkit-slider-thumb { -webkit-appearance: none; width: 8px; height: 8px; border-radius: 50%; background: var(--цвет-фиолет-400); cursor: pointer; }
+
+/* Node-граф */
+.нодГраф { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.нодГрафЗаг { font-size: 9px; color: var(--цвет-текст-тихий); padding: 4px 8px; border-bottom: 1px solid var(--цвет-граница-тихая); font-weight: 600; letter-spacing: 0.06em; flex-shrink: 0; }
+.нодХолст { flex: 1; position: relative; background: repeating-linear-gradient(0deg,transparent,transparent 29px,rgba(26,32,53,0.4) 30px), repeating-linear-gradient(90deg,transparent,transparent 29px,rgba(26,32,53,0.4) 30px), #060810; overflow: hidden; }
+.нодSVG { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+.нод { position: absolute; width: 140px; border: 1px solid var(--цвет-граница-базовая); border-radius: 4px; background: var(--цвет-фон-виджет); cursor: pointer; padding-bottom: 4px; }
+.нод:hover { border-color: var(--цвет-граница-яркая); }
+.нодАкт { border-color: var(--цвет-фиолет-500) !important; box-shadow: 0 0 8px rgba(124,58,237,0.3); }
+.нодЗаг { font-size: 9px; font-weight: 600; color: var(--цвет-текст-первичный); padding: 4px 6px 2px; border-bottom: 1px solid var(--цвет-граница-тихая); }
+.нодПар { display: flex; justify-content: space-between; padding: 1px 6px; }
+.нодПарМ { font-size: 7px; color: var(--цвет-текст-тихий); }
+.нодПарЗ { font-size: 7px; color: var(--цвет-фиолет-300); }
+.нодПорты { display: flex; justify-content: space-between; padding: 2px 4px 0; }
+.портВход { width: 7px; height: 7px; border-radius: 50%; background: #7c3aed; border: 1px solid rgba(255,255,255,0.2); }
+.портВыход { width: 7px; height: 7px; border-radius: 50%; background: #22d3ee; border: 1px solid rgba(255,255,255,0.2); }
+
+/* ─── Правая ─── */
+.правая { background: var(--цвет-фон-панель); border-left: 1px solid var(--цвет-граница-тихая); overflow-y: auto; padding: 8px; display: flex; flex-direction: column; gap: 2px; }
+
+.вкладки { display: flex; flex-direction: column; gap: 1px; margin-bottom: 4px; }
+.вкладка { padding: 3px 6px; background: none; border: 1px solid var(--цвет-граница-базовая); border-radius: 3px; font-family: var(--шрифт-ui); font-size: 8px; color: var(--цвет-текст-тихий); cursor: pointer; text-align: left; }
+.вкладка:hover { border-color: var(--цвет-фиолет-400); color: var(--цвет-фиолет-300); }
+
+.строка { display: flex; justify-content: space-between; padding: 2px 0; border-bottom: 1px solid var(--цвет-граница-тихая); }
+.м { font-size: 8px; color: var(--цвет-текст-тихий); }
+.з { font-size: 8px; color: var(--цвет-текст-первичный); }
+
+.контрВкладки { display: flex; gap: 2px; margin-bottom: 4px; }
+.контрВкл { flex: 1; padding: 2px 0; background: none; border: 1px solid var(--цвет-граница-базовая); border-radius: 3px; font-family: var(--шрифт-ui); font-size: 7px; color: var(--цвет-текст-тихий); cursor: pointer; }
+.контрВкл:hover { border-color: var(--цвет-фиолет-400); }
+.слайдер { width: 100%; height: 3px; -webkit-appearance: none; appearance: none; background: var(--цвет-граница-базовая); border-radius: 2px; margin: 3px 0; }
+.слайдер::-webkit-slider-thumb { -webkit-appearance: none; width: 8px; height: 8px; border-radius: 50%; background: var(--цвет-фиолет-400); cursor: pointer; }
+
+.слойСтрока { display: flex; align-items: center; gap: 4px; padding: 2px 0; border-bottom: 1px solid var(--цвет-граница-тихая); }
+.видКнопка { background: none; border: none; cursor: pointer; font-size: 8px; padding: 0; }
+.слойИмя { flex: 1; font-size: 8px; color: var(--цвет-текст-вторичный); }
+.слойИнфо { font-size: 8px; color: var(--цвет-текст-тихий); cursor: pointer; }
+
+.предпросмотры { display: flex; flex-wrap: wrap; gap: 3px; }
+.предпросмотр { display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; }
+.предпрПревью { width: 44px; height: 32px; background: var(--цвет-фон-глубокий); border: 1px solid var(--цвет-граница-базовая); border-radius: 3px; }
+.предпрПревью:hover { border-color: var(--цвет-фиолет-400); }
+.предпрИмя { font-size: 7px; color: var(--цвет-текст-тихий); }
+
+.историяСтрока { font-size: 7px; color: var(--цвет-текст-тихий); padding: 2px 0; border-bottom: 1px solid var(--цвет-граница-тихая); }
+
+.отправитьКнопка { margin-top: 8px; padding: 6px; background: rgba(124,58,237,0.2); border: 1px solid var(--цвет-фиолет-500); border-radius: 4px; font-family: var(--шрифт-ui); font-size: 10px; color: var(--цвет-фиолет-300); cursor: pointer; font-weight: 700; letter-spacing: 0.08em; width: 100%; }
+.отправитьКнопка:hover { background: rgba(124,58,237,0.35); }
