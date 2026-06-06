@@ -1,0 +1,101 @@
+
+.модуль { display: grid; grid-template-columns: 180px 1fr; width: 100%; height: 100%; overflow: hidden; }
+
+/* ─── Левая ─── */
+.левая { background: var(--цвет-фон-панель); border-right: 1px solid var(--цвет-граница-тихая); overflow-y: auto; padding: 8px; display: flex; flex-direction: column; gap: 1px; }
+.заг { font-size: 9px; font-weight: 600; color: var(--цвет-текст-тихий); letter-spacing: 0.1em; padding: 4px 0 2px; display: flex; justify-content: space-between; flex-shrink: 0; }
+.хелп { width: 13px; height: 13px; border: 1px solid var(--цвет-граница-базовая); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 7px; cursor: pointer; }
+.пункт { font-size: 10px; color: var(--цвет-текст-вторичный); padding: 4px 6px; border-radius: 3px; cursor: pointer; }
+.пункт:hover { background: var(--цвет-фон-hover); }
+
+.персонаж { display: flex; gap: 8px; padding: 6px; background: var(--цвет-фон-виджет); border-radius: 4px; border: 1px solid var(--цвет-граница-базовая); margin: 4px 0; }
+.персонажПревью { flex-shrink: 0; }
+.персонажИнфо { display: flex; flex-direction: column; gap: 2px; }
+.персонажИмя { font-size: 10px; font-weight: 600; color: var(--цвет-фиолет-300); }
+.персонажМета { font-size: 8px; color: var(--цвет-текст-тихий); }
+.выбратьКнопка { margin-top: 4px; padding: 3px 6px; background: rgba(124,58,237,0.15); border: 1px solid var(--цвет-фиолет-500); border-radius: 3px; font-family: var(--шрифт-ui); font-size: 8px; color: var(--цвет-фиолет-300); cursor: pointer; }
+
+.слой { display: flex; align-items: center; gap: 4px; padding: 3px 4px; border-radius: 3px; cursor: pointer; }
+.слой:hover { background: var(--цвет-фон-hover); }
+.слойЦвет { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+.слойИмя { font-size: 9px; color: var(--цвет-текст-вторичный); flex: 1; }
+.слойИнт { font-size: 8px; color: var(--цвет-текст-тихий); width: 28px; text-align: right; }
+.видКнопка { background: none; border: none; cursor: pointer; font-size: 9px; padding: 0; }
+
+.добавитьКнопка { margin-top: 4px; padding: 3px 6px; background: none; border: 1px dashed var(--цвет-граница-яркая); border-radius: 3px; font-family: var(--шрифт-ui); font-size: 8px; color: var(--цвет-текст-тихий); cursor: pointer; width: 100%; text-align: left; }
+.добавитьКнопка:hover { border-color: var(--цвет-фиолет-400); color: var(--цвет-фиолет-300); }
+
+.действие { font-size: 9px; color: var(--цвет-текст-вторичный); padding: 3px 6px; border-radius: 3px; cursor: pointer; }
+.действие:hover { background: var(--цвет-фон-hover); }
+
+/* ─── Центр ─── */
+.центр { display: flex; flex-direction: column; overflow: hidden; }
+.верхняяПолоса { display: grid; grid-template-columns: 180px 1fr 200px; flex: 1; overflow: hidden; border-bottom: 1px solid var(--цвет-граница-тихая); }
+
+/* Риг */
+.риг { background: var(--цвет-фон-панель); border-right: 1px solid var(--цвет-граница-тихая); padding: 8px; overflow-y: auto; }
+.ригВкладки { display: flex; gap: 2px; margin-bottom: 6px; }
+.ригВкл { flex: 1; padding: 3px 0; background: none; border: 1px solid var(--цвет-граница-базовая); border-radius: 3px; font-family: var(--шрифт-ui); font-size: 8px; color: var(--цвет-текст-тихий); cursor: pointer; }
+.ригВклАкт { background: rgba(124,58,237,0.15); border-color: var(--цвет-фиолет-500); color: var(--цвет-фиолет-300); }
+.контроллерыСписок { display: flex; flex-direction: column; gap: 1px; }
+.контроллер { font-size: 9px; color: var(--цвет-текст-вторичный); padding: 3px 6px; border-radius: 3px; cursor: pointer; }
+.контроллер:hover { background: var(--цвет-фон-hover); }
+.контроллерАкт { background: rgba(124,58,237,0.15); color: var(--цвет-фиолет-300); }
+
+/* Viewport */
+.viewport { display: flex; flex-direction: column; overflow: hidden; }
+.viewportТулбар { display: flex; align-items: center; gap: 8px; padding: 0 10px; height: 26px; background: var(--цвет-фон-панель); border-bottom: 1px solid var(--цвет-граница-тихая); flex-shrink: 0; }
+.акцент { color: var(--цвет-фиолет-300); font-size: 10px; font-weight: 600; }
+.метаВьюпорт { font-size: 9px; color: var(--цвет-текст-тихий); }
+.viewportОбласть { flex: 1; background: radial-gradient(ellipse at 40% 30%, rgba(124,58,237,0.08) 0%, #060810 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.персонажВьюпорт { position: relative; z-index: 2; }
+.аннотация { position: absolute; font-size: 8px; color: var(--цвет-текст-тихий); background: rgba(13,16,23,0.8); padding: 3px 6px; border-radius: 3px; border: 1px solid var(--цвет-граница-тихая); max-width: 120px; line-height: 1.4; }
+.viewportИнфо { display: flex; gap: 10px; padding: 4px 8px; font-size: 8px; color: var(--цвет-текст-тихий); border-top: 1px solid var(--цвет-граница-тихая); flex-shrink: 0; }
+
+/* Лицевая анимация */
+.лицевая { background: var(--цвет-фон-панель); border-left: 1px solid var(--цвет-граница-тихая); padding: 8px; overflow-y: auto; }
+.выраженияСписок { display: flex; flex-direction: column; gap: 1px; }
+.выражение { display: flex; align-items: center; gap: 6px; padding: 3px 4px; border-radius: 3px; cursor: pointer; }
+.выражение:hover { background: var(--цвет-фон-hover); }
+.выражениеКруг { width: 16px; height: 16px; border-radius: 50%; background: var(--цвет-фон-виджет); border: 1px solid var(--цвет-граница-базовая); display: flex; align-items: center; justify-content: center; font-size: 7px; color: var(--цвет-текст-тихий); flex-shrink: 0; }
+.выражениеИмя { font-size: 9px; color: var(--цвет-текст-вторичный); }
+
+.строка { display: flex; justify-content: space-between; padding: 2px 0; border-bottom: 1px solid var(--цвет-граница-тихая); }
+.м { font-size: 8px; color: var(--цвет-текст-тихий); }
+.з { font-size: 8px; color: var(--цвет-текст-первичный); }
+
+.движенияВкл { display: flex; gap: 2px; margin-bottom: 4px; }
+.движВкл { flex: 1; padding: 2px 0; background: none; border: 1px solid var(--цвет-граница-базовая); border-radius: 3px; font-family: var(--шрифт-ui); font-size: 7px; color: var(--цвет-текст-тихий); cursor: pointer; }
+.движение { display: flex; align-items: center; gap: 4px; padding: 2px 4px; font-size: 9px; color: var(--цвет-текст-вторичный); cursor: pointer; border-radius: 3px; }
+.движение:hover { background: var(--цвет-фон-hover); }
+.движИкон { font-size: 8px; }
+.движИмя {}
+.применитьКнопка { margin: 4px 0; width: 100%; padding: 4px; background: rgba(124,58,237,0.15); border: 1px solid var(--цвет-фиолет-500); border-radius: 3px; font-family: var(--шрифт-ui); font-size: 9px; color: var(--цвет-фиолет-300); cursor: pointer; }
+
+.слайдерГруппа { margin-top: 4px; }
+.слайдерМетка { display: flex; justify-content: space-between; font-size: 8px; color: var(--цвет-текст-тихий); margin-bottom: 2px; }
+.слайдер { width: 100%; height: 3px; -webkit-appearance: none; appearance: none; background: var(--цвет-граница-базовая); border-radius: 2px; }
+.слайдер::-webkit-slider-thumb { -webkit-appearance: none; width: 8px; height: 8px; border-radius: 50%; background: var(--цвет-фиолет-400); cursor: pointer; }
+
+/* ─── Нижняя часть — таймлайн ─── */
+.нижняяЧасть { flex-shrink: 0; background: var(--цвет-фон-панель); border-top: 1px solid var(--цвет-граница-тихая); }
+.таймлайнЗаг { display: flex; align-items: center; padding: 4px 8px; border-bottom: 1px solid var(--цвет-граница-тихая); }
+.контролы { display: flex; align-items: center; gap: 3px; }
+.контрКнопка { padding: 2px 8px; background: var(--цвет-фон-виджет); border: 1px solid var(--цвет-граница-базовая); border-radius: 3px; font-size: 10px; color: var(--цвет-текст-вторичный); cursor: pointer; }
+.контрКнопка:hover { border-color: var(--цвет-фиолет-400); }
+.таймкод { font-size: 10px; color: var(--цвет-фиолет-300); font-weight: 600; margin-left: 8px; }
+
+.шкала { display: flex; height: 16px; border-bottom: 1px solid var(--цвет-граница-тихая); }
+.шкалаОтступ { width: 80px; flex-shrink: 0; }
+.шкалаПолосы { flex: 1; display: flex; position: relative; }
+.шкалаЕд { flex: 1; border-left: 1px solid var(--цвет-граница-тихая); font-size: 7px; color: var(--цвет-текст-тихий); padding-left: 2px; display: flex; align-items: center; }
+
+.дорожка { display: flex; height: 22px; border-bottom: 1px solid var(--цвет-граница-тихая); }
+.дорожкаМетка { width: 80px; flex-shrink: 0; display: flex; align-items: center; gap: 4px; padding: 0 6px; font-size: 8px; color: var(--цвет-текст-вторичный); }
+.дорожкаКлипы { flex: 1; position: relative; }
+.ключКадр { position: absolute; top: 50%; transform: translate(-50%, -50%) rotate(45deg); width: 7px; height: 7px; border-radius: 1px; }
+.курсорЛиния { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--цвет-фиолет-300); pointer-events: none; box-shadow: 0 0 4px var(--цвет-фиолет-400); }
+
+.графРедактор { height: 80px; border-top: 1px solid var(--цвет-граница-тихая); padding: 4px 8px; display: flex; flex-direction: column; }
+.графЗаг { font-size: 8px; color: var(--цвет-текст-тихий); margin-bottom: 2px; flex-shrink: 0; }
+.графSVG { flex: 1; }
