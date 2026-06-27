@@ -1,0 +1,13 @@
+.модуль{display:grid;grid-template-columns:190px 1fr 190px;width:100%;height:100%;overflow:hidden}
+.левая{background:var(--цвет-фон-панель);border-right:1px solid var(--цвет-граница-тихая);overflow-y:auto;padding:8px;display:flex;flex-direction:column;gap:2px}
+.заг{font-size:9px;font-weight:600;color:var(--цвет-текст-тихий);letter-spacing:.1em;padding:4px 0 2px;flex-shrink:0}
+.генератор{display:flex;align-items:center;gap:6px;padding:6px;border-radius:4px;cursor:pointer;border:1px solid transparent;transition:all var(--переход-быстрый);flex-wrap:wrap}
+.генератор:hover{background:var(--цвет-фон-hover)}
+.генАкт{background:rgba(34,211,238,.08);border-color:rgba(34,211,238,.4)}
+.генИнфо{display:flex;flex-direction:column;gap:1px;flex:1}
+.генИмя{font-size:9px;color:var(--цвет-текст-первичный);font-weight:600}
+.генТип{font-size:8px;color:var(--цвет-текст-тихий)}
+.генПрогресс{width:100%;height:2px;background:var(--цвет-граница-базовая);border-radius:1px;overflow:hidden}
+.генПолоса{height:100%;background:linear-gradient(90deg,#22d3ee,#7c3aed);border-radius:1px;transition:width .3s}
+.генПроц{font-size:8px;color:#22d3ee;font-weight:600}
+.добавитьКнопка{margin-top:4px;padding:4px 8px;background:none;border:1px dashed var(--цвет-граница-яркая);border-radius:3px;font-family:var(--шрифт-ui);font-size:
