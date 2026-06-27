@@ -1,0 +1,53 @@
+/* Дополнительные стили для TopBar.tsx — добавить в конец существующего TopBar.module.css */
+
+.zoomГруппа {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px;
+  border-left: 1px solid var(--цвет-граница-тихая);
+  flex-shrink: 0;
+}
+
+.zoomКнопка {
+  width: 18px;
+  height: 18px;
+  background: var(--цвет-фон-виджет);
+  border: 1px solid var(--цвет-граница-базовая);
+  border-radius: 3px;
+  color: var(--цвет-текст-вторичный);
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.zoomКнопка:hover { border-color: var(--цвет-фиолет-400); color: var(--цвет-фиолет-300); }
+
+.zoomЗначение {
+  font-size: 9px;
+  color: var(--цвет-текст-тихий);
+  min-width: 32px;
+  text-align: center;
+}
+
+.темаКнопка, .помощьКнопка {
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: 1px solid var(--цвет-граница-базовая);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin: 0 2px;
+  color: var(--цвет-текст-вторичный);
+}
+.темаКнопка:hover, .помощьКнопка:hover {
+  border-color: var(--цвет-фиолет-400);
+  background: var(--цвет-фон-hover);
+}

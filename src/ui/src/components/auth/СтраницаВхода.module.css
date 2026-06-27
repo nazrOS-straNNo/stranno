@@ -1,0 +1,211 @@
+.обёртка {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--цвет-фон-глубокий);
+  overflow: hidden;
+}
+
+.фон { position: absolute; inset: 0; }
+
+.сфера1 {
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%);
+  filter: blur(40px);
+  animation: плыть1 12s ease-in-out infinite;
+}
+
+.сфера2 {
+  position: absolute;
+  bottom: 10%;
+  right: 15%;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34,211,238,0.12) 0%, transparent 70%);
+  filter: blur(40px);
+  animation: плыть2 14s ease-in-out infinite;
+}
+
+@keyframes плыть1 {
+  0%,100% { transform: translate(0,0); }
+  50% { transform: translate(40px,-30px); }
+}
+@keyframes плыть2 {
+  0%,100% { transform: translate(0,0); }
+  50% { transform: translate(-40px,30px); }
+}
+
+.сетка {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(124,58,237,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.карточка {
+  position: relative;
+  z-index: 1;
+  width: 380px;
+  background: rgba(17, 21, 32, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--цвет-граница-яркая);
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(124,58,237,0.1);
+}
+
+.лого {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.логоИкона {
+  font-size: 24px;
+  color: var(--цвет-фиолет-400);
+  font-weight: 700;
+}
+.логоТекст { display: flex; flex-direction: column; }
+.логоНазвание {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--цвет-текст-первичный);
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+.логоПодпись {
+  font-size: 9px;
+  color: var(--цвет-текст-тихий);
+  letter-spacing: 0.05em;
+}
+
+.переключатель {
+  display: flex;
+  background: var(--цвет-фон-виджет);
+  border-radius: 6px;
+  padding: 2px;
+  margin-bottom: 20px;
+}
+.переклКнопка {
+  flex: 1;
+  padding: 7px 0;
+  background: none;
+  border: none;
+  border-radius: 5px;
+  font-family: var(--шрифт-ui);
+  font-size: 10px;
+  color: var(--цвет-текст-тихий);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all var(--переход-быстрый);
+}
+.переклАкт {
+  background: var(--цвет-фиолет-500);
+  color: white;
+  font-weight: 600;
+}
+
+.форма { display: flex; flex-direction: column; gap: 14px; }
+.поле { display: flex; flex-direction: column; gap: 5px; }
+.метка {
+  font-size: 9px;
+  color: var(--цвет-текст-тихий);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.ввод {
+  background: var(--цвет-фон-виджет);
+  border: 1px solid var(--цвет-граница-базовая);
+  border-radius: 5px;
+  padding: 9px 12px;
+  color: var(--цвет-текст-первичный);
+  font-family: var(--шрифт-ui);
+  font-size: 11px;
+  outline: none;
+  transition: border-color var(--переход-быстрый);
+}
+.ввод:focus { border-color: var(--цвет-фиолет-400); }
+.ввод::placeholder { color: var(--цвет-текст-тихий); }
+
+.забылПароль { text-align: right; }
+.ссылка {
+  font-size: 9px;
+  color: var(--цвет-фиолет-300);
+  text-decoration: none;
+  cursor: pointer;
+}
+.ссылка:hover { text-decoration: underline; }
+
+.отправитьКнопка {
+  margin-top: 6px;
+  padding: 11px;
+  background: linear-gradient(135deg, var(--цвет-фиолет-500), #6366f1);
+  border: none;
+  border-radius: 6px;
+  font-family: var(--шрифт-ui);
+  font-size: 11px;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: transform var(--переход-быстрый), box-shadow var(--переход-быстрый);
+}
+.отправитьКнопка:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(124,58,237,0.4);
+}
+
+.разделитель {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 9px;
+  color: var(--цвет-текст-тихий);
+  margin: 4px 0;
+}
+.разделитель::before, .разделитель::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--цвет-граница-тихая);
+}
+.разделитель span { padding: 0 10px; }
+
+.соцКнопки { display: flex; gap: 8px; }
+.соцКнопка {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+  background: var(--цвет-фон-виджет);
+  border: 1px solid var(--цвет-граница-базовая);
+  border-radius: 5px;
+  font-family: var(--шрифт-ui);
+  font-size: 10px;
+  color: var(--цвет-текст-вторичный);
+  cursor: pointer;
+  transition: border-color var(--переход-быстрый);
+}
+.соцКнопка:hover { border-color: var(--цвет-граница-яркая); }
+
+.подвал {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 10px;
+  color: var(--цвет-текст-тихий);
+}
