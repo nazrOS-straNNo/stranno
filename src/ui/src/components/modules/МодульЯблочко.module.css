@@ -1,0 +1,62 @@
+.модуль{display:grid;grid-template-columns:200px 1fr 200px;width:100%;height:100%;overflow:hidden}
+.левая{background:var(--цвет-фон-панель);border-right:1px solid var(--цвет-граница-тихая);overflow-y:auto;padding:8px;display:flex;flex-direction:column;gap:2px}
+.заг{font-size:9px;font-weight:600;color:var(--цвет-текст-тихий);letter-spacing:.1em;padding:4px 0 2px;flex-shrink:0}
+.симуляция{display:flex;align-items:center;gap:6px;padding:6px;border-radius:4px;cursor:pointer;border:1px solid transparent;transition:all var(--переход-быстрый);flex-wrap:wrap}
+.симуляция:hover{background:var(--цвет-фон-hover)}
+.симАкт{background:rgba(124,58,237,.12);border-color:var(--цвет-фиолет-500)}
+.симИконка{font-size:14px;flex-shrink:0}
+.симИнфо{display:flex;flex-direction:column;gap:1px;flex:1;min-width:0}
+.симИмя{font-size:9px;color:var(--цвет-текст-первичный);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.симТип{font-size:8px;color:var(--цвет-текст-тихий)}
+.симСтатус{font-size:7px;padding:1px 5px;border-radius:10px;flex-shrink:0;font-weight:600}
+.статусАкт{background:rgba(16,185,129,.2);color:#10b981}
+.статусКэш{background:rgba(34,211,238,.2);color:#22d3ee}
+.статусПауза{background:rgba(245,158,11,.2);color:#f59e0b}
+.добавитьКнопка{margin-top:4px;padding:4px 8px;background:none;border:1px dashed var(--цвет-граница-яркая);border-radius:3px;font-family:var(--шрифт-ui);font-size:8px;color:var(--цвет-текст-тихий);cursor:pointer;width:100%;text-align:left}
+.добавитьКнопка:hover{border-color:var(--цвет-фиолет-400);color:var(--цвет-фиолет-300)}
+.тип{font-size:9px;color:var(--цвет-текст-вторичный);padding:3px 6px;border-radius:3px;cursor:pointer}
+.тип:hover{background:var(--цвет-фон-hover)}
+
+.центр{display:flex;flex-direction:column;overflow:hidden}
+.тулбар{display:flex;align-items:center;gap:6px;padding:0 10px;height:28px;background:var(--цвет-фон-панель);border-bottom:1px solid var(--цвет-граница-тихая);flex-shrink:0}
+.акцент{font-size:10px;color:var(--цвет-фиолет-300);font-weight:600}
+.кнопкаТулбар{padding:2px 8px;background:var(--цвет-фон-виджет);border:1px solid var(--цвет-граница-базовая);border-radius:3px;font-family:var(--шрифт-ui);font-size:9px;color:var(--цвет-текст-вторичный);cursor:pointer}
+.кнопкаТулбар:hover{border-color:var(--цвет-фиолет-400)}
+
+.viewport{flex:1;position:relative;background:radial-gradient(ellipse at 50% 80%,#0a1520 0%,#050810 100%);overflow:hidden}
+.симВизуал{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:40px}
+.объект1{position:absolute;top:20%;left:35%;width:60px;height:60px;background:rgba(124,58,237,.3);border:1px solid rgba(124,58,237,.6);border-radius:4px;animation:падать 3s ease-in infinite}
+.объект2{position:absolute;top:10%;left:55%;width:40px;height:40px;border-radius:50%;background:rgba(16,185,129,.2);border:1px solid rgba(16,185,129,.5);animation:падать 3s ease-in .5s infinite}
+.объект3{position:absolute;top:15%;left:45%;width:80px;height:20px;background:rgba(34,211,238,.15);border:1px solid rgba(34,211,238,.4);animation:падать 3s ease-in 1s infinite}
+@keyframes падать{0%{transform:translateY(0) rotate(0deg)}100%{transform:translateY(200px) rotate(180deg)}}
+.пол{position:absolute;bottom:30px;left:10%;right:10%;height:2px;background:rgba(184,126,247,.4);box-shadow:0 0 10px rgba(124,58,237,.3)}
+.частица{position:absolute;border-radius:50%;background:#b87ef7;animation:мерцать 1s ease-in-out infinite;transform:translate(-50%,-50%)}
+@keyframes мерцать{0%,100%{opacity:.8;transform:translate(-50%,-50%) scale(1)}50%{opacity:.2;transform:translate(-50%,-50%) scale(.5)}}
+.viewportИнфо{position:absolute;bottom:6px;left:8px;display:flex;gap:12px;font-size:8px;color:rgba(136,146,164,.6)}
+
+.контролы{display:flex;align-items:center;gap:6px;padding:6px 10px;background:var(--цвет-фон-панель);border-top:1px solid var(--цвет-граница-тихая);flex-shrink:0}
+.контрКнопка{padding:3px 8px;background:var(--цвет-фон-виджет);border:1px solid var(--цвет-граница-базовая);border-radius:3px;font-size:11px;color:var(--цвет-текст-вторичный);cursor:pointer}
+.контрКнопка:hover{border-color:var(--цвет-фиолет-400)}
+.прогресс{flex:1;height:3px;-webkit-appearance:none;appearance:none;background:var(--цвет-граница-базовая);border-radius:2px}
+.прогресс::-webkit-slider-thumb{-webkit-appearance:none;width:10px;height:10px;border-radius:50%;background:var(--цвет-фиолет-400);cursor:pointer}
+.кадрМетка{font-size:9px;color:var(--цвет-фиолет-300);font-weight:600}
+.запечьКнопка{padding:4px 12px;background:rgba(16,185,129,.15);border:1px solid #10b981;border-radius:3px;font-family:var(--шрифт-ui);font-size:9px;color:#10b981;cursor:pointer;font-weight:600}
+.запечьКнопка:hover{background:rgba(16,185,129,.3)}
+
+.параметры{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0;border-top:1px solid var(--цвет-граница-тихая);flex-shrink:0}
+.парамГруппа{padding:8px 10px;border-right:1px solid var(--цвет-граница-тихая)}
+.парамГруппа:last-child{border-right:none}
+.парамЗаг{font-size:8px;font-weight:600;color:var(--цвет-текст-тихий);letter-spacing:.08em;margin-bottom:4px}
+.парам{display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid var(--цвет-граница-тихая)}
+.парамМ{font-size:8px;color:var(--цвет-текст-тихий)}
+.парамЗ{font-size:8px;color:var(--цвет-текст-первичный)}
+
+.правая{background:var(--цвет-фон-панель);border-left:1px solid var(--цвет-граница-тихая);overflow-y:auto;padding:8px;display:flex;flex-direction:column;gap:2px}
+.строка{display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid var(--цвет-граница-тихая)}
+.м{font-size:8px;color:var(--цвет-текст-тихий)}
+.з{font-size:8px;color:var(--цвет-текст-первичный)}
+.коллайдер{display:flex;align-items:center;gap:5px;padding:2px 0;border-bottom:1px solid var(--цвет-граница-тихая)}
+.колИкона{font-size:9px;color:var(--цвет-фиолет-400)}
+.колИмя{font-size:9px;color:var(--цвет-текст-вторичный)}
+.очиститьКэш{margin-top:4px;padding:3px;width:100%;background:none;border:1px solid var(--цвет-красный-400);border-radius:3px;font-family:var(--шрифт-ui);font-size:8px;color:var(--цвет-красный-400);cursor:pointer}
+.запечьКнопкаМал{margin-top:4px;padding:5px;width:100%;background:rgba(16,185,129,.15);border:1px solid #10b981;border-radius:3px;font-family:var(--шрифт-ui);font-size:9px;color:#10b981;cursor:pointer;font-weight:700}
