@@ -21,10 +21,9 @@
 }
 
 .логоИкона {
-  font-size: 18px;
-  color: var(--цвет-фиолет-400);
-  font-weight: 700;
-  line-height: 1;
+  height: 20px;
+  width: auto;
+  display: block;
 }
 
 .логоТекст {
@@ -46,6 +45,26 @@
   color: var(--цвет-текст-тихий);
   letter-spacing: 0.03em;
   line-height: 1;
+}
+
+/* ─── Кнопка меню (гамбургер) ─── */
+.менюКнопка {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 12px;
+  border: none;
+  border-right: 1px solid var(--цвет-граница-тихая);
+  background: transparent;
+  color: var(--цвет-текст-вторичный);
+  cursor: pointer;
+  transition: color var(--переход-быстрый), background var(--переход-быстрый);
+}
+
+.менюКнопка:hover {
+  color: var(--цвет-текст-первичный);
+  background: var(--цвет-фон-hover);
 }
 
 /* ─── Навигация ─── */
@@ -95,6 +114,82 @@
 }
 .скоро:hover {
   opacity: 0.65;
+}
+
+/* ─── Zoom controls ─── */
+.zoomГруппа {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 8px;
+  border-left: 1px solid var(--цвет-граница-тихая);
+  flex-shrink: 0;
+}
+
+.zoomКнопка {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--цвет-граница-базовая);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--цвет-текст-вторичный);
+  font-size: 11px;
+  cursor: pointer;
+  transition: color var(--переход-быстрый), background var(--переход-быстрый);
+}
+
+.zoomКнопка:hover {
+  color: var(--цвет-текст-первичный);
+  background: var(--цвет-фон-hover);
+}
+
+.zoomЗначение {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--цвет-текст-вторичный);
+  min-width: 32px;
+  text-align: center;
+}
+
+/* ─── Theme toggle ─── */
+.темаКнопка {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 10px;
+  border: none;
+  border-left: 1px solid var(--цвет-граница-тихая);
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background var(--переход-быстрый);
+}
+
+.темаКнопка:hover {
+  background: var(--цвет-фон-hover);
+}
+
+/* ─── Hotkeys help ─── */
+.помощьКнопка {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 10px;
+  border: none;
+  border-left: 1px solid var(--цвет-граница-тихая);
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background var(--переход-быстрый);
+}
+
+.помощьКнопка:hover {
+  background: var(--цвет-фон-hover);
 }
 
 /* ─── Статус ядра ─── */
