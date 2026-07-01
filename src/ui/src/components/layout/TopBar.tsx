@@ -1,5 +1,6 @@
 import { useAppStore, МодульИд } from "../../store/appStore";
 import styles from "./TopBar.module.css";
+import logo from "../../assets/logo.svg";
 
 const ВКЛАДКИ: { id: МодульИд; метка: string; готов: boolean }[] = [
   { id: "путь",       метка: "ПУТЬ",      готов: false },
@@ -36,7 +37,7 @@ export function TopBar() {
   return (
     <header className={styles.шапка}>
       <div className={styles.лого}>
-        <span className={styles.логоИкона}>✕</span>
+        <img src={logo} alt="nazrOS" className={styles.логоИкона} />
         <div className={styles.логоТекст}>
           <span className={styles.логоНазвание}>СТРАННО</span>
           <span className={styles.логоВерсия}>nazrOS CORE v0.2</span>
