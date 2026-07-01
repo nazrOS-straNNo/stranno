@@ -34,6 +34,11 @@ export function TopBar() {
   const переключитьПомощь   = useAppStore(s => s.переключитьПомощьКлавиш);
   const выйти                = useAppStore(s => s.выйти);
 
+  // Функция для открытия меню (заглушка, замени на реальную логику)
+  const открытьМеню = () => {
+    console.log("Меню открыто");
+  };
+
   return (
     <header className={styles.шапка}>
       <div className={styles.лого}>
@@ -43,6 +48,15 @@ export function TopBar() {
           <span className={styles.логоВерсия}>nazrOS CORE v0.2</span>
         </div>
       </div>
+
+      {/* Кнопка гамбургер (меню) — вставлена после логотипа */}
+      <button className={styles.менюКнопка} onClick={открытьМеню} title="Открыть меню">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
 
       <nav className={styles.навигация}>
         {ВКЛАДКИ.map((вкладка) => (
