@@ -1,6 +1,6 @@
 import { useAppStore, МодульИд } from "../../store/appStore";
 import styles from "./TopBar.module.css";
-import logo from "../../assets/logo.svg";
+import logo from "../../assets/logo.png";
 
 const ВКЛАДКИ: { id: МодульИд; метка: string; готов: boolean }[] = [
   { id: "путь",       метка: "ПУТЬ",      готов: false },
