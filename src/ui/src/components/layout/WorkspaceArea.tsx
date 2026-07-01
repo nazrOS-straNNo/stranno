@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { МодульИд, useAppStore } from "../../store/appStore";
 import { МодульРуки }      from "../modules/МодульРуки";
 import { МодульМульт }     from "../modules/МодульМульт";
